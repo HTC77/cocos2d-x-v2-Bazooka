@@ -15,6 +15,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
     eglView->setViewName("bazooka");
-    eglView->setFrameSize(1480, 720);
+    eglView->setFrameSize(680, 320);
     return CCApplication::sharedApplication()->run();
 }
