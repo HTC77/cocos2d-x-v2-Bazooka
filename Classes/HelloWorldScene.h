@@ -15,6 +15,8 @@ public:
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+
+	virtual void update(float dt);
 	
 };
 

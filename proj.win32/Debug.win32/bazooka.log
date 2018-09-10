@@ -1,23 +1,30 @@
-﻿Build started 09/09/2018 10:11:00 ب.ظ.
+﻿Build started 10/09/2018 11:56:58 ق.ظ.
      1>Project "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\bazooka.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\CocosDenshion\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\CocosDenshion\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D COCOS2D_DEBUG=1 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp main.cpp
          HelloWorldScene.cpp
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.h(19): error C2143: syntax error : missing ';' before '*'
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.h(19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(37): error C2065: 'hero' : undeclared identifier
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(38): error C2065: 'hero' : undeclared identifier
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(38): error C2227: left of '->setPosition' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(39): error C2065: 'hero' : undeclared identifier
          AppDelegate.cpp
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.h(19): error C2143: syntax error : missing ';' before '*'
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.h(19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
          Generating Code...
          Skipping... (no relevant changes detected)
          main.cpp
-     1>Done Building Project "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\bazooka.vcxproj" (Build target(s)) -- FAILED.
+       PreLinkEvent:
+         if not exist "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\" mkdir "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\"
+         xcopy /Y /Q "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\libwebsockets\win32\lib\*.*" "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\"
+         :VCEnd
+         2 File(s) copied
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\bazooka.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\\" libExtensions.lib libcocos2d.lib libCocosDenshion.lib opengl32.lib glew32.lib libBox2d.lib libchipmunk.lib libcurl_imp.lib pthreadVCE2.lib websockets.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\bazooka.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\bazooka.lib" /MACHINE:X86 /SAFESEH Debug.win32\AppDelegate.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\main.obj
+         "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\libcocos2d.lib"
+         "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\libCocosDenshion.lib"
+         "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\libExtensions.lib"
+         "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\libBox2D.lib"
+         "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\libchipmunk.lib"
+     1>AppDelegate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+         bazooka.vcxproj -> E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\bazooka.exe
+     1>Done Building Project "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\bazooka.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.81
+Time Elapsed 00:00:02.99
