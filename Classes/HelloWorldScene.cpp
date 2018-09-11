@@ -27,7 +27,7 @@ bool HelloWorld::init()
 		
         return false;
     }
-    this->scheduleUpdate();
+	
 	visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
@@ -42,11 +42,17 @@ bool HelloWorld::init()
 	CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
 	pMenu->setPosition(CCPoint(25,50));
 	this->addChild(pMenu, 1);
+
+	enemy = Enemy::createEnemy();
+	this->addChild(enemy);
+	
+	this->scheduleUpdate();
 	this->setTouchEnabled(true);
     return true;
 }
 void HelloWorld::update(float dt)
 {
+	enemy->update();
 	/*CCPoint p = hero->getPosition();
 	hero->setPosition(ccp(p.x + 5, p.y));
 	if ((hero->getPositionX() - hero->getContentSize().width / 2) > visibleSize.width)

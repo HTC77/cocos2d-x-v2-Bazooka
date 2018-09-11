@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 USING_NS_CC;
-
+#include "Enemy.h"
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
@@ -23,6 +23,7 @@ public:
 	virtual void ccTouchesMoved(CCSet* pTouches, CCEvent* event);
 	virtual void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
 	void buttonControl(CCObject* pSender);
+	Enemy* enemy;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
