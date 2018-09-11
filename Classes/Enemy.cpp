@@ -31,7 +31,7 @@ bool Enemy::initEnemy()
 	CCLOG("random height %f", mrand);
 	float h = visibleSize.height * mrand * 0.25;
 	this->initWithFile("bookGame_enemy.png");
-	CCPoint p = ccp(visibleSize.width - this->getContentSize().width / 2,h);
+	CCPoint p = ccp(visibleSize.width + this->getContentSize().width / 2,h);
 	this->setPosition(p);
 	return true;
 }

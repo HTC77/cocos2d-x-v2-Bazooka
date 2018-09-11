@@ -43,22 +43,23 @@ bool HelloWorld::init()
 	pMenu->setPosition(CCPoint(25,50));
 	this->addChild(pMenu, 1);
 
-	enemy = Enemy::createEnemy();
-	this->addChild(enemy);
-	
+	gameplayLayer = new GameplayLayer();
+	this->addChild(gameplayLayer,6);
 	this->scheduleUpdate();
+	this->schedule(schedule_selector(HelloWorld::spawnEnemy), 3.0);
 	this->setTouchEnabled(true);
     return true;
 }
 void HelloWorld::update(float dt)
 {
-	enemy->update();
-	/*CCPoint p = hero->getPosition();
-	hero->setPosition(ccp(p.x + 5, p.y));
-	if ((hero->getPositionX() - hero->getContentSize().width / 2) > visibleSize.width)
-	{
-		hero->setPosition(ccp(0.0 - hero->getContentSize().width / 2, hero ->getPositionY()));
-	}*/
+	gameplayLayer->update();
+}
+void HelloWorld::spawnEnemy(float dt)
+{
+	CCLog("spawn enemy");
+	Enemy* e = Enemy::createEnemy();
+	gameplayLayer->addChild(e);
+	gameplayLayer->getEnemiesArray()->addObject(e);
 }
 
 void HelloWorld::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
@@ -87,3 +88,4 @@ void HelloWorld::buttonControl(CCObject* pSender)
 	test->setScale(0.5);
 	this->addChild(test);
 }
+
