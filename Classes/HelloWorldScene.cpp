@@ -57,8 +57,9 @@ void HelloWorld::update(float dt)
 void HelloWorld::spawnEnemy(float dt)
 {
 	CCLog("spawn enemy");
-	Enemy* e = Enemy::createEnemy();
+	Enemy* e = Enemy::createEnemy(gameplayLayer);
 	gameplayLayer->addChild(e);
+	e->shoot(0.016);
 	gameplayLayer->getEnemiesArray()->addObject(e);
 }
 

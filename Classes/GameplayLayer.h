@@ -13,5 +13,10 @@ public:
 	CCArray* enemies;
 	CCArray* getEnemiesArray();
 	CCArray* enemiesToBeDeleted;
+
+	CCArray* enemyBullets;
+	CCArray* enemyBulletsToBeDeleted;
+
+	CCArray* getEnemyBulletsArray();
 };
 #endif /* defined(__bazooka__GameplayLayer__) */
