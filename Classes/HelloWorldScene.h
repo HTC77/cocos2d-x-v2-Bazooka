@@ -24,9 +24,16 @@ public:
 	virtual void ccTouchesBegan(CCSet* pTouches, CCEvent* event);
 	virtual void ccTouchesMoved(CCSet* pTouches, CCEvent* event);
 	virtual void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
-	void buttonControl(CCObject* pSender);
 	GameplayLayer* gameplayLayer;
 	void spawnEnemy(float dt);
+
+	void fireRocket();
+	CCRect leftButton, rightButton;
+
+	CCPoint gravity;
+
+	int jumpTimer;
+	bool jumping;
 
 };
 

@@ -36,23 +36,53 @@ bool HelloWorld::init()
 	this->addChild(bg,-1);
 
 	hero = CCSprite::create("bookGame_tinyBazooka.png");
-	hero->setPosition(ccp(visibleSize.width * 0.4f,visibleSize.height * 0.4f));
+	hero->setPosition(ccp(visibleSize.width * 0.2f,visibleSize.height * 0.4f));
 	this->addChild(hero,5);
-	CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png","CloseSelected.png", this, menu_selector(HelloWorld::buttonControl));
-	CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-	pMenu->setPosition(CCPoint(25,50));
-	this->addChild(pMenu, 1);
+	
 
 	gameplayLayer = new GameplayLayer();
 	this->addChild(gameplayLayer,6);
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(HelloWorld::spawnEnemy), 3.0);
 	this->setTouchEnabled(true);
+
+	leftButton = CCRectMake(0, 0, visibleSize.width / 2, visibleSize.height);
+	rightButton = CCRectMake(visibleSize.width / 2, 0, visibleSize.width / 2, visibleSize.height);
+
+	gravity = ccp(0, -5);
+	jumping = false;
+	jumpTimer = 0;
     return true;
 }
 void HelloWorld::update(float dt)
 {
 	gameplayLayer->update();
+
+	if (jumping)
+	{
+		jumpTimer = 10;
+		jumping = false;
+	}
+	if (jumpTimer>0)
+	{
+		jumpTimer--;
+		CCPoint p = hero->getPosition();
+		CCPoint mP = ccpAdd(p, ccp(0, 7));
+		hero->setPosition(mP);
+	}
+	else
+	{
+		jumpTimer = 0;
+		CCPoint p = hero->getPosition();
+		CCPoint pM = ccpAdd(p, gravity);
+		hero->setPosition(pM);
+	}
+
+	float maxY = visibleSize.height - hero->getContentSize().height / 2;
+	float minY = hero->getContentSize().height / 2;
+	float newY = hero->getPosition().y;
+	newY = MIN(MAX(newY, minY), maxY);
+	hero->setPosition(ccp(hero->getPosition().x, newY));
 }
 void HelloWorld::spawnEnemy(float dt)
 {
@@ -69,10 +99,16 @@ void HelloWorld::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
 	CCTouch *touch = (CCTouch*)pTouches->anyObject();
 	CCPoint location = touch->getLocationInView();
 	location = CCDirector::sharedDirector()->convertToGL(location);
-	CCLog("location: xpos:%f , ypos:%f", location.x, location.y);
-	CCMoveTo * actionMove = CCMoveTo::create(1, location);
-	CCEaseSineInOut *easeInOut = CCEaseSineInOut::create(actionMove);
-	hero->runAction(easeInOut);
+	
+	if (rightButton.containsPoint(location))
+	{
+		fireRocket();
+	}
+
+	if (leftButton.containsPoint(location))
+	{
+		jumping = true;
+	}
 }
 void HelloWorld::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 {
@@ -82,11 +118,14 @@ void HelloWorld::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 {
 	CCLog("TouchEnded");
 }
-void HelloWorld::buttonControl(CCObject* pSender)
-{
-	CCSprite* test = CCSprite::create("CloseNormal.png ");
-	test->setPosition(ccp(hero->getPosition().x + hero ->getContentSize().width / 2, hero->getPosition().y));
-	test->setScale(0.5);
-	this->addChild(test);
-}
 
+
+void HelloWorld::fireRocket()
+{
+	CCPoint p = hero->getPosition();
+	p.x = p.x + hero->getContentSize().width / 2;
+	p.y = p.y - hero->getContentSize().height * 0.05;
+	Projectile* rocket = Projectile::createProjectile(p, 2);
+	gameplayLayer->addChild(rocket);
+	gameplayLayer->getPlayerBulletsArray()->addObject(rocket);
+}
