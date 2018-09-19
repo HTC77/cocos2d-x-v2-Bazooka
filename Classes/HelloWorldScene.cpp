@@ -40,7 +40,7 @@ bool HelloWorld::init()
 	this->addChild(hero,5);
 	
 
-	gameplayLayer = new GameplayLayer();
+	gameplayLayer = new GameplayLayer(hero);
 	this->addChild(gameplayLayer,6);
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(HelloWorld::spawnEnemy), 3.0);
@@ -89,7 +89,7 @@ void HelloWorld::spawnEnemy(float dt)
 	CCLog("spawn enemy");
 	Enemy* e = Enemy::createEnemy(gameplayLayer);
 	gameplayLayer->addChild(e);
-	e->shoot(0.016);
+	e->shoot(0.016f);
 	gameplayLayer->getEnemiesArray()->addObject(e);
 }
 

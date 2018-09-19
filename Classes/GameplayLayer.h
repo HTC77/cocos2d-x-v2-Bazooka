@@ -5,10 +5,10 @@ using namespace cocos2d;
 class GameplayLayer : public CCLayer
 {
 public:
-	GameplayLayer();
+	GameplayLayer(CCSprite* _hero);
 	~GameplayLayer();
 	void update();
-	
+	CCSprite* hero;
 	CCSize visibleSize;
 	CCArray* enemies;
 	CCArray* getEnemiesArray();
@@ -21,5 +21,7 @@ public:
 
 	CCArray* playerBullets;
 	CCArray* getPlayerBulletsArray();
+
+	bool checkBoxCollision(CCSprite* box1, CCSprite *box2);
 };
 #endif /* defined(__bazooka__GameplayLayer__) */
