@@ -159,4 +159,30 @@ void HelloWorld::gameOver()
 	CCLabelBMFont* gameOverLabel = CCLabelBMFont::create("GAMEOVER","PixelFont.fnt");
 	gameOverLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.6));
 	this->addChild(gameOverLabel, 10);
+
+	int highScore = CCUserDefault::sharedUserDefault()->getIntegerForKey("bazookaGameHighScore");
+	if (gameplayLayer->score > highScore)
+	{
+		CCUserDefault::sharedUserDefault() ->setIntegerForKey("bazookaGameHighScore", gameplayLayer->score);
+		CCUserDefault::sharedUserDefault()->flush();
+		CCLabelBMFont* newHighScoreLabel = CCLabelBMFont::create("NEW HIGHSCORE", "PixelFont.fnt");
+			newHighScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.5));
+		this->addChild(newHighScoreLabel, 10);
+		newHighScoreLabel->setScale(0.75);
+		CCLabelBMFont* gOscoreLabel = CCLabelBMFont::create("0","PixelFont.fnt");
+		gOscoreLabel->setPosition(ccp(visibleSize.width * 0.5,
+			visibleSize.height * 0.4));
+		this->addChild(gOscoreLabel, 10);
+		gOscoreLabel->setScale(0.75);
+		char scoreTxt[100];
+		sprintf(scoreTxt, "%d", gameplayLayer->score);
+		gOscoreLabel->setString(scoreTxt);
+	}
+	else
+	{
+		CCLabelBMFont* newHighScoreLabel = CCLabelBMFont::create("BETTER LUCK NEXT TIME", "PixelFont.fnt");
+		newHighScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.5));
+		this->addChild(newHighScoreLabel, 10);
+		newHighScoreLabel->setScale(0.75);
+	}
 }
