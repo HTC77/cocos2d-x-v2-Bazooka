@@ -35,6 +35,9 @@ public:
 	int jumpTimer;
 	bool jumping;
 
+	void gameOver();
+
+	CCLabelBMFont* scoreLabel;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -23,5 +23,8 @@ public:
 	CCArray* getPlayerBulletsArray();
 
 	bool checkBoxCollision(CCSprite* box1, CCSprite *box2);
+
+	int score;
+	bool gameOver;
 };
 #endif /* defined(__bazooka__GameplayLayer__) */

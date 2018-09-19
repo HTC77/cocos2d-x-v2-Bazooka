@@ -11,6 +11,9 @@ GameplayLayer::GameplayLayer(CCSprite* _hero)
 	playerBullets = new CCArray();
 
 	hero = _hero;
+
+	score = 0;
+	gameOver = false;
 }
 GameplayLayer::~GameplayLayer(){}
 void GameplayLayer::update()
@@ -23,6 +26,7 @@ void GameplayLayer::update()
 			e->update();
 			if (e->getPositionX() + e->getContentSize().width / 2 < 0)
 			{
+				gameOver = true;
 				enemiesToBeDeleted->addObject(e);
 			}
 		}
@@ -71,6 +75,7 @@ void GameplayLayer::update()
 					Enemy* en = (Enemy*)enemies->objectAtIndex(j);
 					if (checkBoxCollision(p, en))
 					{
+						score++;
 						this->removeChild(p);
 						playerBullets->removeObject(p);
 						enemiesToBeDeleted->addObject(en);
@@ -90,6 +95,7 @@ void GameplayLayer::update()
 			if (checkBoxCollision(pr, hero))
 			{
 				enemyBulletsToBeDeleted->addObject(pr);
+				gameOver = true;
 				return;
 			}
 		}

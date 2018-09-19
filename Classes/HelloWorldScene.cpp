@@ -52,37 +52,53 @@ bool HelloWorld::init()
 	gravity = ccp(0, -5);
 	jumping = false;
 	jumpTimer = 0;
+
+	scoreLabel = CCLabelBMFont::create("Score: 0", "PixelFont.fnt");
+	scoreLabel->setPosition(ccp(visibleSize.width * 0.870, visibleSize.height * 0.9));
+	this->addChild(scoreLabel, 10);
+	scoreLabel->setScale(0.5);
     return true;
 }
 void HelloWorld::update(float dt)
 {
-	gameplayLayer->update();
+	if (!gameplayLayer->gameOver)
+	{
+		gameplayLayer->update();
 
-	if (jumping)
-	{
-		jumpTimer = 10;
-		jumping = false;
-	}
-	if (jumpTimer>0)
-	{
-		jumpTimer--;
-		CCPoint p = hero->getPosition();
-		CCPoint mP = ccpAdd(p, ccp(0, 7));
-		hero->setPosition(mP);
+		if (jumping)
+		{
+			jumpTimer = 10;
+			jumping = false;
+		}
+		if (jumpTimer > 0)
+		{
+			jumpTimer--;
+			CCPoint p = hero->getPosition();
+			CCPoint mP = ccpAdd(p, ccp(0, 7));
+			hero->setPosition(mP);
+		}
+		else
+		{
+			jumpTimer = 0;
+			CCPoint p = hero->getPosition();
+			CCPoint pM = ccpAdd(p, gravity);
+			hero->setPosition(pM);
+		}
+
+		float maxY = visibleSize.height - hero->getContentSize().height / 2;
+		float minY = hero->getContentSize().height / 2;
+		float newY = hero->getPosition().y;
+		newY = MIN(MAX(newY, minY), maxY);
+		hero->setPosition(ccp(hero->getPosition().x, newY));
+
+		char scoreTxt[100];
+		sprintf(scoreTxt, "Score: %d", gameplayLayer->score);
+		scoreLabel->setString(scoreTxt);
 	}
 	else
 	{
-		jumpTimer = 0;
-		CCPoint p = hero->getPosition();
-		CCPoint pM = ccpAdd(p, gravity);
-		hero->setPosition(pM);
+		gameOver();
 	}
-
-	float maxY = visibleSize.height - hero->getContentSize().height / 2;
-	float minY = hero->getContentSize().height / 2;
-	float newY = hero->getPosition().y;
-	newY = MIN(MAX(newY, minY), maxY);
-	hero->setPosition(ccp(hero->getPosition().x, newY));
 }
 void HelloWorld::spawnEnemy(float dt)
 {
@@ -99,15 +115,13 @@ void HelloWorld::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
 	CCTouch *touch = (CCTouch*)pTouches->anyObject();
 	CCPoint location = touch->getLocationInView();
 	location = CCDirector::sharedDirector()->convertToGL(location);
-	
-	if (rightButton.containsPoint(location))
+	if (!gameplayLayer->gameOver)
 	{
-		fireRocket();
-	}
+		if (rightButton.containsPoint(location))
+			fireRocket();
 
-	if (leftButton.containsPoint(location))
-	{
-		jumping = true;
+		if (leftButton.containsPoint(location))
+			jumping = true;
 	}
 }
 void HelloWorld::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
@@ -128,4 +142,21 @@ void HelloWorld::fireRocket()
 	Projectile* rocket = Projectile::createProjectile(p, 2);
 	gameplayLayer->addChild(rocket);
 	gameplayLayer->getPlayerBulletsArray()->addObject(rocket);
+}
+
+void HelloWorld::gameOver()
+{
+	this->unscheduleAllSelectors();
+	if (gameplayLayer->getEnemiesArray()->count() >0)
+	{
+		for (int i = 0; i< gameplayLayer->getEnemiesArray()->count(); i++)
+		{
+			Enemy* en = (Enemy*)gameplayLayer->getEnemiesArray() ->objectAtIndex(i);
+			en->unscheduleAllSelectors();
+		}
+	}
+
+	CCLabelBMFont* gameOverLabel = CCLabelBMFont::create("GAMEOVER","PixelFont.fnt");
+	gameOverLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.6));
+	this->addChild(gameOverLabel, 10);
 }
