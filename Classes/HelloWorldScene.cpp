@@ -30,10 +30,6 @@ bool HelloWorld::init()
 	
 	visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-    
-	CCSprite* bg = CCSprite::create("bg1.jpg");
-	bg->setPosition(ccp(visibleSize.width * 0.5f,visibleSize.height * .5));
-	this->addChild(bg,-1);
 
 	hero = CCSprite::create("bookGame_tinyBazooka.png");
 	hero->setPosition(ccp(visibleSize.width * 0.2f,visibleSize.height * 0.4f));
@@ -55,6 +51,9 @@ bool HelloWorld::init()
 
 	hudLayer = new HUDLayer();
 	this->addChild(hudLayer, 15); //keeping at top most layer
+
+	scrollingBgLayer = new ScrollingBgLayer(3.0);
+	this->addChild(scrollingBgLayer);
     return true;
 }
 void HelloWorld::update(float dt)
@@ -90,6 +89,8 @@ void HelloWorld::update(float dt)
 		hero->setPosition(ccp(hero->getPosition().x, newY));
 
 		hudLayer->updateScore(gameplayLayer->score);
+
+		scrollingBgLayer->update();
 	}
 	else
 	{

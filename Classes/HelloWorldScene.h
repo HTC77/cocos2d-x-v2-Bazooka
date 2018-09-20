@@ -6,6 +6,7 @@ USING_NS_CC;
 #include "GameplayLayer.h"
 #include "Enemy.h"
 #include "HUDLayer.h"
+#include "ScrollingBgLayer.h"
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
@@ -42,6 +43,8 @@ public:
 
 	void gamePaused();
 	void gameResumed();
+
+	ScrollingBgLayer* scrollingBgLayer;
 
 };
 
