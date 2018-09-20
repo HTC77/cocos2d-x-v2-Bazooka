@@ -53,10 +53,8 @@ bool HelloWorld::init()
 	jumping = false;
 	jumpTimer = 0;
 
-	scoreLabel = CCLabelBMFont::create("Score: 0", "PixelFont.fnt");
-	scoreLabel->setPosition(ccp(visibleSize.width * 0.870, visibleSize.height * 0.9));
-	this->addChild(scoreLabel, 10);
-	scoreLabel->setScale(0.5);
+	hudLayer = new HUDLayer();
+	this->addChild(hudLayer, 15); //keeping at top most layer
     return true;
 }
 void HelloWorld::update(float dt)
@@ -91,9 +89,7 @@ void HelloWorld::update(float dt)
 		newY = MIN(MAX(newY, minY), maxY);
 		hero->setPosition(ccp(hero->getPosition().x, newY));
 
-		char scoreTxt[100];
-		sprintf(scoreTxt, "Score: %d", gameplayLayer->score);
-		scoreLabel->setString(scoreTxt);
+		hudLayer->updateScore(gameplayLayer->score);
 	}
 	else
 	{
@@ -184,5 +180,36 @@ void HelloWorld::gameOver()
 		newHighScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.5));
 		this->addChild(newHighScoreLabel, 10);
 		newHighScoreLabel->setScale(0.75);
+	}
+}
+
+
+void HelloWorld::gamePaused()
+{
+	this->setTouchEnabled(false);
+	this->unscheduleUpdate();
+	this->unschedule(schedule_selector(HelloWorld::spawnEnemy));
+	if (gameplayLayer->getEnemiesArray()->count() >0)
+	{
+		for (int i = 0; i< gameplayLayer->getEnemiesArray()->count(); i++)
+		{
+			Enemy* en = (Enemy*)gameplayLayer->getEnemiesArray()->objectAtIndex(i);
+			en->pauseSchedulerAndActions();
+		}
+	}
+}
+
+void HelloWorld::gameResumed()
+{
+	this->setTouchEnabled(true);
+	this->scheduleUpdate();
+	this->schedule(schedule_selector(HelloWorld::spawnEnemy), 3.0);
+	if (gameplayLayer->getEnemiesArray()->count() >0)
+	{
+		for (int i = 0; i< gameplayLayer->getEnemiesArray()->count(); i++)
+		{
+			Enemy* en = (Enemy*)gameplayLayer->getEnemiesArray() ->objectAtIndex(i);
+			en->resumeSchedulerAndActions();
+		}
 	}
 }

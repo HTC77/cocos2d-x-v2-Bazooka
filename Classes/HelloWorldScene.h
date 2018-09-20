@@ -5,6 +5,7 @@
 USING_NS_CC;
 #include "GameplayLayer.h"
 #include "Enemy.h"
+#include "HUDLayer.h"
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
@@ -37,7 +38,11 @@ public:
 
 	void gameOver();
 
-	CCLabelBMFont* scoreLabel;
+	HUDLayer* hudLayer;
+
+	void gamePaused();
+	void gameResumed();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
