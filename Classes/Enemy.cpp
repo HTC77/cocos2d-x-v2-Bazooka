@@ -37,6 +37,25 @@ bool Enemy::initEnemy(GameplayLayer* _gameplayLayer)
 	CCPoint p = ccp(visibleSize.width + this->getContentSize().width / 2,h);
 	this->setPosition(p);
 	this->schedule(schedule_selector(Enemy::shoot), 1.3);
+
+	//enemy animation
+	CCSpriteBatchNode* spritebatch = CCSpriteBatchNode::create("enemy_anim.png");
+	CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	cache->addSpriteFramesWithFile("enemy_anim.plist");
+	this->createWithSpriteFrameName("enemy_idle_1.png");
+	this->addChild(spritebatch);
+	//idle animation
+	CCArray* animFrames = CCArray::createWithCapacity(4);
+	char str1[100] = { 0 };
+	for (int i = 1; i <= 4; i++)
+	{
+		sprintf(str1, "enemy_idle_%d.png", i);
+		CCSpriteFrame* frame = cache->spriteFrameByName(str1);
+		animFrames->addObject(frame);
+	}
+	CCAnimation* idleanimation = CCAnimation::createWithSpriteFrames(animFrames, 0.25f);
+	this->runAction(CCRepeatForever::create(CCAnimate::create(idleanimation)));
+
 	return true;
 }
 
