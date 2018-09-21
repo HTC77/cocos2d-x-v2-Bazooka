@@ -92,6 +92,11 @@ bool HelloWorld::init()
 	scrollingBgLayer = new ScrollingBgLayer(3.0);
 	this->addChild(scrollingBgLayer);
 
+	skeletonNode = extension::CCSkeletonAnimation::createWithFile("player.json", "player.atlas", 1.0f);
+	skeletonNode->addAnimation("runCycle", true, 0, 0);
+	skeletonNode->setPosition(ccp(visibleSize.width / 2, skeletonNode ->getContentSize().height / 2));
+	addChild(skeletonNode);
+
     return true;
 }
 void HelloWorld::update(float dt)
