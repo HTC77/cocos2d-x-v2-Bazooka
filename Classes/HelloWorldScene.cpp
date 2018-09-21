@@ -35,9 +35,46 @@ bool HelloWorld::init()
 	hero->setPosition(ccp(visibleSize.width * 0.2f,visibleSize.height * 0.4f));
 	this->addChild(hero,5);
 	
+	//player animation
+	CCSpriteBatchNode* spritebatch = CCSpriteBatchNode::create("player_anim.png");
+	CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	cache->addSpriteFramesWithFile("player_anim.plist");
+
+	hero->createWithSpriteFrameName("player_idle_1.png");
+	hero->addChild(spritebatch);
+
+	//idle animation
+	CCArray* animFrames = CCArray::createWithCapacity(4);
+	char str1[100] = { 0 };
+	for (int i = 1; i <= 4; i++)
+	{
+		sprintf(str1, "player_idle_%d.png", i);
+		CCSpriteFrame* frame = cache->spriteFrameByName(str1);
+		animFrames->addObject(frame);
+	}
+
+	CCAnimation* idleanimation = CCAnimation::createWithSpriteFrames(animFrames, 0.25f);
+	mIdleAction = CCRepeatForever::create(CCAnimate::create(idleanimation));
+	mIdleAction->retain();
+	
+	//boost animation
+	animFrames->removeAllObjects();
+	char str2[100] = { 0 };
+	for (int i = 1; i <= 4; i++)
+	{
+		sprintf(str2, "player_boost_%d.png", i);
+		CCSpriteFrame* frame = cache->spriteFrameByName(str2);
+		animFrames->addObject(frame);
+	}
+
+	CCAnimation* boostanimation = CCAnimation::createWithSpriteFrames(animFrames, 0.25f);
+	hero->runAction(CCRepeatForever::create(CCAnimate::create(boostanimation)));
+	mBoostAction = CCRepeatForever::create(CCAnimate::create(boostanimation));
+	mBoostAction->retain();
 
 	gameplayLayer = new GameplayLayer(hero);
 	this->addChild(gameplayLayer,6);
+	
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(HelloWorld::spawnEnemy), 3.0);
 	this->setTouchEnabled(true);
@@ -54,6 +91,7 @@ bool HelloWorld::init()
 
 	scrollingBgLayer = new ScrollingBgLayer(3.0);
 	this->addChild(scrollingBgLayer);
+
     return true;
 }
 void HelloWorld::update(float dt)
@@ -69,6 +107,8 @@ void HelloWorld::update(float dt)
 		}
 		if (jumpTimer > 0)
 		{
+			CCLog("boost");
+			mPlayerState = kPlayerStateBoost;
 			jumpTimer--;
 			CCPoint p = hero->getPosition();
 			CCPoint mP = ccpAdd(p, ccp(0, 7));
@@ -76,6 +116,8 @@ void HelloWorld::update(float dt)
 		}
 		else
 		{
+			CCLog("idle");
+			mPlayerState = kPLayerStateIdle;
 			jumpTimer = 0;
 			CCPoint p = hero->getPosition();
 			CCPoint pM = ccpAdd(p, gravity);
@@ -91,6 +133,8 @@ void HelloWorld::update(float dt)
 		hudLayer->updateScore(gameplayLayer->score);
 
 		scrollingBgLayer->update();
+		
+		this->AnimationStates();
 	}
 	else
 	{
@@ -212,5 +256,37 @@ void HelloWorld::gameResumed()
 			Enemy* en = (Enemy*)gameplayLayer->getEnemiesArray() ->objectAtIndex(i);
 			en->resumeSchedulerAndActions();
 		}
+	}
+}
+
+void HelloWorld::idleAnim()
+{
+	if (mActionState != kActionStateIdle)
+	{
+		hero->stopAllActions();
+		hero->runAction(mIdleAction);
+		mActionState = kActionStateIdle;
+	}
+}
+void HelloWorld::boostAnim()
+{
+	if (mActionState != kActionStateBoost)
+	{
+		hero->stopAllActions();
+		hero->runAction(mBoostAction);
+		mActionState = kActionStateBoost;
+	}
+}
+
+void HelloWorld::AnimationStates()
+{
+	CCLOG("action state");
+	switch (mPlayerState)
+	{
+	case kPLayerStateIdle:
+		this->idleAnim(); break;
+	case kPlayerStateBoost:
+		this->boostAnim(); break;
+	default: break;
 	}
 }

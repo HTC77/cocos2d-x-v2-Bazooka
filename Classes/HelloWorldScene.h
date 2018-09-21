@@ -46,6 +46,27 @@ public:
 
 	ScrollingBgLayer* scrollingBgLayer;
 
+	typedef enum ActionState
+	{
+		kActionStateNone = 0,
+		kActionStateIdle,
+		kActionStateBoost
+	};
+	typedef enum PlayerState
+	{
+		kPlayerStateNone = 0,
+		kPLayerStateIdle,
+		kPlayerStateBoost
+	};
+
+	ActionState mActionState;
+	PlayerState mPlayerState;
+	CCAction* mIdleAction;
+	CCAction* mBoostAction;
+
+	void idleAnim();
+	void boostAnim();
+	void AnimationStates();
 };
 
 #endif // __HELLOWORLD_SCENE_H__
