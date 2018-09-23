@@ -7,7 +7,6 @@ USING_NS_CC;
 #include "Enemy.h"
 #include "HUDLayer.h"
 #include "ScrollingBgLayer.h"
-#include <spine/spine-cocos2dx.h>
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
@@ -69,7 +68,6 @@ public:
 	void boostAnim();
 	void AnimationStates();
 
-	extension::CCSkeletonAnimation* skeletonNode;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

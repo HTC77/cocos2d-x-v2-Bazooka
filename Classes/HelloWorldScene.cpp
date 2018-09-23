@@ -92,10 +92,8 @@ bool HelloWorld::init()
 	scrollingBgLayer = new ScrollingBgLayer(3.0);
 	this->addChild(scrollingBgLayer);
 
-	skeletonNode = extension::CCSkeletonAnimation::createWithFile("player.json", "player.atlas", 1.0f);
-	skeletonNode->addAnimation("runCycle", true, 0, 0);
-	skeletonNode->setPosition(ccp(visibleSize.width / 2, skeletonNode ->getContentSize().height / 2));
-	addChild(skeletonNode);
+	
+
 
     return true;
 }
@@ -188,6 +186,26 @@ void HelloWorld::fireRocket()
 	Projectile* rocket = Projectile::createProjectile(p, 2);
 	gameplayLayer->addChild(rocket);
 	gameplayLayer->getPlayerBulletsArray()->addObject(rocket);
+	CCParticleSystemQuad* m_emitter = new CCParticleSystemQuad();
+	m_emitter = CCParticleExplosion::create();
+	m_emitter->setPosition(ccpAdd(hero->getPosition(), ccp(hero->getContentSize().width / 2, 0)));
+	m_emitter->setStartColor(ccc4f(1.0, 1.0, 1.0, 1.0));
+	m_emitter->setEndColor(ccc4f(0.0, 0.0, 0.0, 0.0));
+	m_emitter->setTotalParticles(10);
+	m_emitter->setLife(0.25);
+	m_emitter->setSpeed(2.0);
+	m_emitter->setSpeedVar(30.0);
+	//** gravity
+	m_emitter->setEmitterMode(kCCParticleModeGravity);
+	m_emitter->setGravity(ccp(0, 90));
+
+	//** mode radius
+	m_emitter->setEmitterMode(kCCParticleModeRadius);
+	m_emitter->setStartRadius(0);
+	m_emitter->setStartRadiusVar(50);
+	m_emitter->setRotatePerSecond(2);
+	m_emitter->setRotatePerSecondVar(5);
+	this->addChild(m_emitter);
 }
 
 void HelloWorld::gameOver()
