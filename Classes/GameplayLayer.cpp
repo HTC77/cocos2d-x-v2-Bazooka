@@ -1,5 +1,6 @@
 #include "GameplayLayer.h"
 #include "Enemy.h"
+#include "ParticleLayer.h"
 GameplayLayer::GameplayLayer(CCSprite* _hero)
 {
 	visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -90,6 +91,10 @@ void GameplayLayer::update()
 						this->removeChild(p);
 						playerBullets->removeObject(p);
 						enemiesToBeDeleted->addObject(en);
+
+						//new particle system
+						ParticleLayer* pLayer = new ParticleLayer(en->getPosition());
+						this->addChild(pLayer);
 						return;
 					}
 				}

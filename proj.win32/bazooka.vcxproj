@@ -136,6 +136,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\GameplayLayer.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HUDLayer.cpp" />
+    <ClCompile Include="..\Classes\ParticleLayer.cpp" />
+    <ClCompile Include="..\Classes\ParticleSpin.cpp" />
     <ClCompile Include="..\Classes\Projectile.cpp" />
     <ClCompile Include="..\Classes\ScrollingBg.cpp" />
     <ClCompile Include="..\Classes\ScrollingBgLayer.cpp" />
@@ -147,6 +149,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\GameplayLayer.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HUDLayer.h" />
+    <ClInclude Include="..\Classes\ParticleLayer.h" />
+    <ClInclude Include="..\Classes\ParticleSpin.h" />
     <ClInclude Include="..\Classes\Projectile.h" />
     <ClInclude Include="..\Classes\ScrollingBg.h" />
     <ClInclude Include="..\Classes\ScrollingBgLayer.h" />

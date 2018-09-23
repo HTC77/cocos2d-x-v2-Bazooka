@@ -199,6 +199,7 @@ void HelloWorld::fireRocket()
 	m_emitter->setLife(0.25);
 	m_emitter->setSpeed(2.0);
 	m_emitter->setSpeedVar(30.0);
+
 	//** gravity
 	m_emitter->setEmitterMode(kCCParticleModeGravity);
 	m_emitter->setGravity(ccp(0, 90));
