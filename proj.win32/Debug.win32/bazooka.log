@@ -1,14 +1,11 @@
-﻿Build started 23/09/2018 01:02:05 ب.ظ.
+﻿Build started 23/09/2018 01:30:18 ب.ظ.
      1>Project "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\bazooka.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\CocosDenshion\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D COCOS2D_DEBUG=1 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\GameplayLayer.cpp
-         GameplayLayer.cpp
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(23): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(39): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(53): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(68): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(73): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\gameplaylayer.cpp(103): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\CocosDenshion\include" /I"E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D COCOS2D_DEBUG=1 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\HelloWorldScene.cpp
+         HelloWorldScene.cpp
+     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(221): warning C4018: '<' : signed/unsigned mismatch
+     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(267): warning C4018: '<' : signed/unsigned mismatch
+     1>e:\cocos2d-x-2.2.3\projects\bazooka\classes\helloworldscene.cpp(282): warning C4018: '<' : signed/unsigned mismatch
        PreLinkEvent:
          if not exist "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\" mkdir "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\"
          xcopy /Y /Q "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\..\..\..\external\libwebsockets\win32\lib\*.*" "E:\cocos2d-x-2.2.3\projects\bazooka\proj.win32\Debug.win32\"
@@ -34,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.85
+Time Elapsed 00:00:01.84

@@ -89,11 +89,13 @@ bool HelloWorld::init()
 	hudLayer = new HUDLayer();
 	this->addChild(hudLayer, 15); //keeping at top most layer
 
+
 	scrollingBgLayer = new ScrollingBgLayer(3.0);
 	this->addChild(scrollingBgLayer);
 
-	
-
+	flameParticle = CCParticleSystemQuad::create("jetBoost.plist");
+	flameParticle->setPosition(ccpAdd(hero->getPosition(), ccp(-hero->getContentSize().width * 0.25, 0)));
+	this->addChild(flameParticle);
 
     return true;
 }
@@ -138,6 +140,8 @@ void HelloWorld::update(float dt)
 		scrollingBgLayer->update();
 		
 		this->AnimationStates();
+
+		flameParticle->setPosition(ccpAdd(hero->getPosition(), ccp(-hero->getContentSize().width * 0.25, 0)));
 	}
 	else
 	{
