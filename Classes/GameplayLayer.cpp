@@ -76,6 +76,17 @@ void GameplayLayer::update()
 					if (checkBoxCollision(p, en))
 					{
 						score++;
+						
+						//add particle system where collision
+						CCParticleSystemQuad * smokeParticle = CCParticleSystemQuad::create("smoke.plist");
+						smokeParticle->setPosition(en->getPosition());
+						this->addChild(smokeParticle);
+						smokeParticle->setAutoRemoveOnFinish(true);
+						CCParticleSystemQuad * dustParticle = CCParticleSystemQuad::create("dusts.plist");
+						dustParticle->setPosition(en->getPosition());
+						this->addChild(dustParticle);
+						dustParticle->setAutoRemoveOnFinish(true);
+
 						this->removeChild(p);
 						playerBullets->removeObject(p);
 						enemiesToBeDeleted->addObject(en);
