@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "MainMenuScene.h"
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -25,10 +27,27 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
+    CCScene *pScene = MainMenu::scene();
 
     // run
     pDirector->runWithScene(pScene);
+	
+	//Background Music
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("bgMusic.wav");
+	bool isPaused = CCUserDefault::sharedUserDefault()->getBoolForKey("tinyBazooka_kSoundPausedKey");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bgMusic.wav", true);
+	if (isPaused)
+	{
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	}
+
+	//Preload Sound Efects
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("enemyKill.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("fireRocket.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("gunshot.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("playerKill.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("pop.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->preloadEffect("rocketExplode.wav");
 
     return true;
 }
@@ -37,14 +56,25 @@ bool AppDelegate::applicationDidFinishLaunching() {
 void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
+
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	bool isPaused = CCUserDefault::sharedUserDefault()->getBoolForKey("tinyBazooka_kSoundPausedKey");
+	if (isPaused == false)
+	{
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	}
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
+
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
-}
+	bool isPaused = CCUserDefault::sharedUserDefault()->getBoolForKey("tinyBazooka_kSoundPausedKey");
+	if (isPaused == false)
+	{
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	}
+}	  
+

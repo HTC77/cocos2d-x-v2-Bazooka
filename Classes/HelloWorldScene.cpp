@@ -1,5 +1,5 @@
 #include "HelloWorldScene.h"
-
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 CCScene* HelloWorld::scene()
@@ -211,6 +211,8 @@ void HelloWorld::fireRocket()
 	m_emitter->setRotatePerSecond(2);
 	m_emitter->setRotatePerSecondVar(5);
 	this->addChild(m_emitter);
+
+	CocosDenshion::SimpleAudioEngine::sharedEngine() ->playEffect("fireRocket.wav");
 }
 
 void HelloWorld::gameOver()
@@ -254,6 +256,19 @@ void HelloWorld::gameOver()
 		this->addChild(newHighScoreLabel, 10);
 		newHighScoreLabel->setScale(0.75);
 	}
+
+	CCMenuItemImage *mainmenuItem = CCMenuItemImage::create("_bookgame_UI_mainmenu.png", "_bookgame_UI_mainmenu.png", this,	menu_selector(HelloWorld::mainMenuScene));
+	mainmenuItem->setPosition(ccp(visibleSize.width / 2, visibleSize.height * 0.2));
+	CCMenu *mainMenu = CCMenu::create(mainmenuItem, NULL);
+	mainMenu->setPosition(CCPointZero);
+	this->addChild(mainMenu);
+}
+
+void HelloWorld::mainMenuScene(CCObject* pSender)
+{
+	CCScene *mScene = MainMenu::scene();
+	CCDirector::sharedDirector()->replaceScene(mScene);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
 }
 
 

@@ -1,5 +1,6 @@
 #include "HUDLayer.h"
 #include "HelloWorldScene.h"
+#include "SimpleAudioEngine.h"
 HUDLayer::HUDLayer()
 {
 	visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -38,6 +39,7 @@ void HUDLayer::pauseGame(CCObject* pSender)
 		resumeMenu->setPosition(CCPointZero);
 		this->addChild(resumeMenu);
 		helloWorld->gamePaused();
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
 	}
 }
 
@@ -47,4 +49,5 @@ void HUDLayer::resumeGame(CCObject* pSender)
 	this->removeChild(resumeMenu);
 	HelloWorld* helloWorld = (HelloWorld*)this->getParent();
 	helloWorld->gameResumed();
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
 }

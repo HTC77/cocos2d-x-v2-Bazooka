@@ -1,6 +1,7 @@
 #include "GameplayLayer.h"
 #include "Enemy.h"
 #include "ParticleLayer.h"
+#include "SimpleAudioEngine.h"
 GameplayLayer::GameplayLayer(CCSprite* _hero)
 {
 	visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -77,7 +78,9 @@ void GameplayLayer::update()
 					if (checkBoxCollision(p, en))
 					{
 						score++;
-						
+						CocosDenshion::SimpleAudioEngine::sharedEngine() ->playEffect("enemyKill.wav");
+						CocosDenshion::SimpleAudioEngine::sharedEngine() ->playEffect("rocketExplode.wav");
+
 						//add particle system where collision
 						CCParticleSystemQuad * smokeParticle = CCParticleSystemQuad::create("smoke.plist");
 						smokeParticle->setPosition(en->getPosition());
@@ -111,6 +114,7 @@ void GameplayLayer::update()
 			if (checkBoxCollision(pr, hero))
 			{
 				enemyBulletsToBeDeleted->addObject(pr);
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("playerKill.wav");
 				gameOver = true;
 				return;
 			}

@@ -7,6 +7,7 @@ USING_NS_CC;
 #include "Enemy.h"
 #include "HUDLayer.h"
 #include "ScrollingBgLayer.h"
+#include "MainMenuScene.h"
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
@@ -69,6 +70,8 @@ public:
 	void AnimationStates();
 
 	CCParticleSystemQuad* flameParticle;
+
+	void mainMenuScene(CCObject* pSender);
 
 };
 
