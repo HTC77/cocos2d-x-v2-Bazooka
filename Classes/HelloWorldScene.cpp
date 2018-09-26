@@ -107,7 +107,7 @@ void HelloWorld::update(float dt)
 
 		if (jumping)
 		{
-			jumpTimer = 10;
+			jumpTimer = 13;
 			jumping = false;
 		}
 		if (jumpTimer > 0)
@@ -254,14 +254,14 @@ void HelloWorld::gameOver()
 		CCLabelBMFont* newHighScoreLabel = CCLabelBMFont::create("BETTER LUCK NEXT TIME", "PixelFont.fnt");
 		newHighScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.5));
 		this->addChild(newHighScoreLabel, 10);
-		newHighScoreLabel->setScale(0.75);
+		newHighScoreLabel->setScale(0.65);
 	}
 
 	CCMenuItemImage *mainmenuItem = CCMenuItemImage::create("_bookgame_UI_mainmenu.png", "_bookgame_UI_mainmenu.png", this,	menu_selector(HelloWorld::mainMenuScene));
 	mainmenuItem->setPosition(ccp(visibleSize.width / 2, visibleSize.height * 0.2));
 	CCMenu *mainMenu = CCMenu::create(mainmenuItem, NULL);
 	mainMenu->setPosition(CCPointZero);
-	this->addChild(mainMenu);
+	this->addChild(mainMenu,11);
 }
 
 void HelloWorld::mainMenuScene(CCObject* pSender)

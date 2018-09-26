@@ -49,13 +49,22 @@ bool MainMenu::init()
 	newHighScoreLabel->setScale(0.5);
 
 	CCLabelBMFont* highScoreLabel = CCLabelBMFont::create("0", "PixelFont.fnt");
-	highScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.1));
+	highScoreLabel->setPosition(ccp(visibleSize.width * 0.5, visibleSize.height * 0.065));
 	this->addChild(highScoreLabel, 10);
 	highScoreLabel->setScale(0.5);
 	int highScore = CCUserDefault::sharedUserDefault()->getIntegerForKey("bazookaGameHighScore");
 	char scoreTxt[100];
 	sprintf(scoreTxt, "%d", highScore);
 	highScoreLabel->setString(scoreTxt);
+
+	CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png","CloseSelected.png",this,menu_selector(MainMenu::menuCloseCallback));
+
+	pCloseItem->setPosition(ccp(origin.x + visibleSize.width * .25 - pCloseItem->getContentSize().width / 2,origin.y + visibleSize.height * 0.5));
+
+	// create menu, it's an autorelease object
+	CCMenu* pMenu2 = CCMenu::create(pCloseItem, NULL);
+	pMenu2->setPosition(CCPointZero);
+	this->addChild(pMenu2, 1);
 
 	this->scheduleUpdate();
 
@@ -102,3 +111,14 @@ void MainMenu::MoveUpFinished(CCNode* sender)
 	sprite->runAction(CCSequence::create(easeInOut, actionMoveDone, NULL));
 }
 
+void MainMenu::menuCloseCallback(CCObject* pSender)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.", "Alert");
+#else
+	CCDirector::sharedDirector()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	exit(0);
+#endif
+#endif
+}

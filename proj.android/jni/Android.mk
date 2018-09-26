@@ -8,7 +8,17 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/HelloWorldScene.cpp
+                   ../../Classes/HelloWorldScene.cpp \
+                   ../../Classes/Enemy.cpp \
+                   ../../Classes/GameplayLayer.cpp \
+                   ../../Classes/HUDLayer.cpp \
+                   ../../Classes/MainMenuScene.cpp \
+                   ../../Classes/OptionsMenuScene.cpp \
+                   ../../Classes/ParticleLayer.cpp \
+                   ../../Classes/ParticleSpin.cpp \
+                   ../../Classes/Projectile.cpp \
+                   ../../Classes/ScrollingBg.cpp \
+                   ../../Classes/ScrollingBgLayer.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

@@ -18,5 +18,8 @@ public:
 
 	void pauseGame(CCObject* pSender);
 	void resumeGame(CCObject* pSender);
+
+	void mainMenuScene(CCObject* pSender);
+	CCMenu *mainMenu;
 };
 #endif

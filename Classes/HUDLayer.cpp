@@ -40,7 +40,20 @@ void HUDLayer::pauseGame(CCObject* pSender)
 		this->addChild(resumeMenu);
 		helloWorld->gamePaused();
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
-	}
+		
+		CCMenuItemImage *mainmenuItem = CCMenuItemImage::create("_bookgame_UI_mainmenu.png", "_bookgame_UI_mainmenu.png", this, menu_selector(HUDLayer::mainMenuScene));
+		mainmenuItem->setPosition(ccp(visibleSize.width / 2, visibleSize.height * 0.1));
+		mainMenu = CCMenu::create(mainmenuItem, NULL);
+		mainMenu->setPosition(CCPointZero);
+		this->addChild(mainMenu);
+	}	
+}
+
+void HUDLayer::mainMenuScene(CCObject* pSender)
+{
+	CCScene *mScene = MainMenu::scene();
+	CCDirector::sharedDirector()->replaceScene(mScene);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
 }
 
 void HUDLayer::resumeGame(CCObject* pSender)
@@ -50,4 +63,5 @@ void HUDLayer::resumeGame(CCObject* pSender)
 	HelloWorld* helloWorld = (HelloWorld*)this->getParent();
 	helloWorld->gameResumed();
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pop.wav");
+	this->removeChild(mainMenu);
 }

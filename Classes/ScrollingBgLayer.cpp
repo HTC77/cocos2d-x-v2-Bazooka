@@ -2,7 +2,7 @@
 ScrollingBgLayer::ScrollingBgLayer(float speed)
 {
 	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-	CCSprite* bg = CCSprite::create("bookGame_BG.png");
+	CCSprite* bg = CCSprite::create("bookGame_Bg.png");
 	bg->setPosition(ccp(visibleSize.width* 0.5, visibleSize.height * 0.5));
 	this->addChild(bg, -1);
 	hills = ScrollingBg::create("bookGame_hills.png", speed * 0.3, 142);

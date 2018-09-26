@@ -15,5 +15,7 @@ public:
 	CREATE_FUNC(MainMenu);
 	void MoveDownFinished(CCNode* sender);
 	void MoveUpFinished(CCNode* sender);
+
+	void menuCloseCallback(CCObject* pSender);
 };
 #endif
